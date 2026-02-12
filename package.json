@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "renovate": "LOG_LEVEL=debug npx renovate --print-config danne-jm/group04_frontend",
-    "renovate:dry": "LOG_LEVEL=debug npx renovate --platform=local --dry-run=full --print-config --token=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"
+  "renovate": "LOG_LEVEL=debug npx renovate --print-config --token=$RENOVATE_TOKEN danne-jm/group04_frontend",
+  "renovate:dry": "LOG_LEVEL=debug npx renovate --platform=local --dry-run=full --print-config --token=$RENOVATE_TOKEN"
   },
   "dependencies": {
     "@DanielJaurellMevorach/group04_frontend": "file:",
