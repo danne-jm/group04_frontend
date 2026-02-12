@@ -13,8 +13,8 @@
   "enabled": true,
 
   // --- NOISE REDUCTION ---
-  "prHourlyLimit": 10,
-  "prConcurrentLimit": 10,
+  "prHourlyLimit": 0, // 0 = No hourly limit
+  "prConcurrentLimit": 0, // 0 = No concurrent PR limit
 
   // --- PR APPEARANCE ---
   "labels": ["dependencies", "renovate"],
