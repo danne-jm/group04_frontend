@@ -6,7 +6,8 @@
     "dev": "next dev --port 8080",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "renovate:dry": "LOG_LEVEL=debug npx renovate --platform=local --dry-run=full --print-config --token=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"
   },
   "dependencies": {
     "@DanielJaurellMevorach/group04_frontend": "file:",
@@ -38,6 +39,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "lucide-react": "^0.511.0",
+    "renovate": "^42.99.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
