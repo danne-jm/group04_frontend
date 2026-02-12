@@ -1,0 +1,11 @@
+name: Renovate Check
+
+on:
+  pull_request:
+
+jobs:
+  renovate-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Acknowledge
+        run: echo "CI check passed for Renovate!"

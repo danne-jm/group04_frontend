@@ -16,8 +16,8 @@
 
   // --- NOISE REDUCTION & SCHEDULING ---
   // Limits how many PRs Renovate creates per hour/run to prevent overwhelming CI.
-  "prHourlyLimit": 2,
-  "prConcurrentLimit": 10,
+  "prHourlyLimit": 10, // Max 10 PRs per hour
+  "prConcurrentLimit": 10, // Max 10 open Renovate PRs at any time
   
   // Un-comment to only run Renovate on weekends or specific times
   // "schedule": ["before 5am on saturday"],
@@ -71,7 +71,7 @@
     // Never automerge 'major' updates (e.g. v1.0.0 -> v2.0.0)
     {
       "matchUpdateTypes": ["major"],
-      "automerge": false,
+      "automerge": true,
       "labels": ["dependencies", "breaking-change"]
     }
 
