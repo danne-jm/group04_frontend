@@ -34,7 +34,7 @@
   // BE CAREFUL: Only enable this if you have a robust CI/Test suite.
    "automerge": true,
    "automergeType": "pr", 
-   "platformAutomerge": true, // Uses GitHub's "Enable Auto-merge" feature
+   "platformAutomerge": false, // Uses GitHub's "Enable Auto-merge" feature
 
   // --- PACKAGE RULES (The Core Logic) ---
   // This is where you tell Renovate strictly how to handle specific packages.
