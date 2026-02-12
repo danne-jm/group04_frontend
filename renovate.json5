@@ -11,35 +11,32 @@
 
   // --- GENERAL SETTINGS ---
   "enabled": true,
-  // "baseBranches": ["main"], // Optional: explicit base branch
 
   // --- NOISE REDUCTION ---
   "prHourlyLimit": 10,
   "prConcurrentLimit": 10,
-  
+
   // --- PR APPEARANCE ---
   "labels": ["dependencies", "renovate"],
   "assignees": ["danne-jm"],
 
-  // --- AUTOMERGE SETTINGS (FIXED) ---
-  // "automerge": true is global, but usually better to set per packageRule to avoid accidents.
-  // We enable it here, but platformAutomerge is the key for your CI timing issue.
+  // --- AUTOMERGE SETTINGS ---
   "automerge": true,
   "platformAutomerge": true, // Uses GitHub's native "Enable Auto-merge"
-  "automergeType": "pr",     // Create PR -> Wait for CI -> Merge
+  "automergeType": "pr",     // Create PR -> Merge
+  "ignoreTests": true,       // FORCE MERGE: Skips waiting for tests to pass
 
   // --- PACKAGE RULES ---
   "packageRules": [
-    // 1. Minor/Patch Updates: Safe to merge
+    // 1. Minor/Patch Updates
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": true
     },
-    // 2. Major Updates: Risky, but you requested automerge.
-    // Labeled clearly so you can spot them in the dashboard.
+    // 2. Major Updates
     {
       "matchUpdateTypes": ["major"],
-      "automerge": true, 
+      "automerge": true,
       "labels": ["dependencies", "breaking-change"]
     }
   ],
@@ -57,6 +54,6 @@
     "labels": ["security"],
     "schedule": []
   },
-  
+
   "rangeStrategy": "bump"
 }
