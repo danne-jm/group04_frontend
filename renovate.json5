@@ -1,0 +1,118 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  // PRESETS: Extends provides a great baseline.
+  "extends": [
+    "config:base", // Standard best practices
+    ":dependencyDashboard", // Creates a pinned issue to track all updates
+    ":semanticCommits", // Use conventional commits (fix(deps): update...)
+    ":timezone(Europe/Brussels)", // Adjusts schedules to your timezone
+    ":maintainLockFilesWeekly", // Recreates lockfile every week to keep it fresh
+    ":enablePreCommit" // specific for pre-commit hooks if you use them
+  ],
+
+  // --- GENERAL SETTINGS ---
+  "enabled": true,
+  // "baseBranches": ["main"], // Uncomment if you use a different default branch
+
+  // --- NOISE REDUCTION & SCHEDULING ---
+  // Limits how many PRs Renovate creates per hour/run to prevent overwhelming CI.
+  "prHourlyLimit": 2,
+  "concurrentPRs": 10,
+  
+  // Un-comment to only run Renovate on weekends or specific times
+  // "schedule": ["before 5am on saturday"],
+
+  // If set to true, Renovate creates a PR but leaves it in "Draft" status first
+  // "draftPR": true,
+
+  // --- PR APPEARANCE ---
+  "labels": ["dependencies", "renovate"],
+  "assignees": ["danne-jm"], // Assign PRs to you automatically
+  // "reviewers": ["team-lead"],
+
+  // --- AUTOMERGE SETTINGS ---
+  // BE CAREFUL: Only enable this if you have a robust CI/Test suite.
+  // "automerge": true,
+  // "automergeType": "pr", 
+  // "platformAutomerge": true, // Uses GitHub's "Enable Auto-merge" feature
+
+  // --- PACKAGE RULES (The Core Logic) ---
+  // This is where you tell Renovate strictly how to handle specific packages.
+  "packageRules": [
+    // 1. GROUPING: Combine related packages into single PRs to reduce noise
+    /*
+    {
+      "groupName": "Next.js ecosystem",
+      "matchPackageNames": ["next", "react", "react-dom", "eslint-config-next"],
+      "matchPackagePatterns": ["^@next/"]
+    },
+    {
+      "groupName": "Radix UI",
+      "matchPackagePatterns": ["^@radix-ui/"]
+    },
+    {
+      "groupName": "Tailwind CSS",
+      "matchPackagePatterns": ["^tailwindcss", "^@tailwindcss", "postcss", "autoprefixer"]
+    },
+    {
+      "groupName": "Linters & Formatters",
+      "matchPackageNames": ["eslint", "prettier", "typescript"],
+      "matchPackagePatterns": ["^@types/", "^eslint-plugin", "^@typescript-eslint"]
+    },
+    */
+
+    // 2. AUTOMERGE RULES (Examples)
+    // Automatically merge 'minor' and 'patch' updates for devDependencies (safe-ish)
+    {
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "matchDepTypes": ["devDependencies"],
+      "automerge": false
+    },
+    // Never automerge 'major' updates (e.g. v1.0.0 -> v2.0.0)
+    {
+      "matchUpdateTypes": ["major"],
+      "automerge": false,
+      "labels": ["dependencies", "breaking-change"]
+    }
+
+    // 3. NOISE CONTROL
+    // Wait 3 days before creating a PR for a new release to check for community issues
+    // (If a package is buggy, it might be pulled/fixed within 3 days)
+    /*
+    {
+      "matchPackagePatterns": ["*"],
+      "stabilityDays": 3,
+      "excludePackageNames": ["next", "react"] // Don't wait for these
+    }
+    */
+
+    // 4. IGNORING PACKAGES
+    // Completely ignore specific packages (Renovate will never update them)
+    // {
+    //   "matchPackageNames": ["deprecated-package"],
+    //   "enabled": false
+    // }
+  ],
+
+  // --- LOCK FILE MAINTENANCE ---
+  // Even if no packages update, this re-generates the lock file to ensure consistency
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 5am on monday"],
+    "automerge": true
+  },
+
+  // --- VULNERABILITY ALERTS ---
+  // Always raise PRs immediately for security vulnerabilities, ignoring schedules
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "labels": ["security"],
+    "schedule": [] // Empty array = 'at any time'
+  },
+  
+  // --- RANGE STRATEGY ---
+  // "bump" = updates package.json to the new version (e.g. ^1.0.0 -> ^1.1.0)
+  // "replace" = replaces the range (e.g. ^1.0.0 -> ^2.0.0)
+  // "pin" = removes the ^ or ~ (e.g. ^1.0.0 -> 1.1.0) - Great for Apps, bad for Libraries
+  "rangeStrategy": "bump"
+}
