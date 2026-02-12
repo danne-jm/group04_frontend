@@ -40,7 +40,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "lucide-react": "^0.563.0",
-    "renovate": "^42.99.0",
+    "renovate": "^43.8.5",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3"
   }
