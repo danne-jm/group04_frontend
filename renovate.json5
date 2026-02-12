@@ -16,7 +16,7 @@
 
   // --- NOISE REDUCTION & SCHEDULING ---
   // Limits how many PRs Renovate creates per hour/run to prevent overwhelming CI.
-  "prHourlyLimit": 2,
+  "prConcurrentLimit": 2,
   "concurrentPRs": 10,
   
   // Un-comment to only run Renovate on weekends or specific times
