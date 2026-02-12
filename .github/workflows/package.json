@@ -19,7 +19,7 @@
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^19.0.0",
-    "swr": "^2.3.3",
+    "swr": "^2.4.0",
     "tailwind-merge": "^3.4.0",
     "virtual-art-gallery": "file:"
   },
