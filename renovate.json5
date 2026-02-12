@@ -2,7 +2,7 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   // PRESETS: Extends provides a great baseline.
   "extends": [
-    "config:base", // Standard best practices
+    "config:recommended", // Standard best practices
     ":dependencyDashboard", // Creates a pinned issue to track all updates
     ":semanticCommits", // Use conventional commits (fix(deps): update...)
     ":timezone(Europe/Brussels)", // Adjusts schedules to your timezone
@@ -16,8 +16,8 @@
 
   // --- NOISE REDUCTION & SCHEDULING ---
   // Limits how many PRs Renovate creates per hour/run to prevent overwhelming CI.
-  "prConcurrentLimit": 2,
-  "concurrentPRs": 10,
+  "prHourlyLimit": 2,
+  "prConcurrentLimit": 10,
   
   // Un-comment to only run Renovate on weekends or specific times
   // "schedule": ["before 5am on saturday"],
