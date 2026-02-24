@@ -103,7 +103,7 @@ const uploadNewArtPiece = async (artPiece: uploadArtPieceInput) => {
   return response.json();
 };
 
-const getAllProducts = async (token? : string | null) => {
+const getAllSellables = async (option, token? : string | null = 404, seed) => {
 
   try {
     const response = await fetch(
@@ -159,7 +159,7 @@ const getProductById = async (id: string) => {
 };
 
 const getProductsByArtist = async (artistName: string) => {
-  const result = await getAllProducts();
+  const result = await getAllSellables(404, 404);
 
   let artPieces: any[] = [];
   if (result.artPieces && Array.isArray(result.artPieces.artPieces)) {
@@ -213,7 +213,7 @@ const getProductsToSellByUser = async (userId: string) => {
   //   userId = decodedToken.userId;
   // }
 
-  const result = await getAllProducts();
+  const result = await getAllSellables(404, 404);
 
   let artPieces: any[] = [];
   if (result.artPieces && Array.isArray(result.artPieces.artPieces)) {
