@@ -40,7 +40,7 @@ export default function ArtworksManagement() {
   const fetchArtworks = async (token : string | null) => {
     try {
       setLoading(true);
-      const response = await artPieceService.getAllProducts(token);
+      const response = await artPieceService.getAllSellables(404, token);
       
       let artPieces = [];
       if (response.artPieces && Array.isArray(response.artPieces.artPieces)) {
@@ -121,7 +121,7 @@ export default function ArtworksManagement() {
         const result = await artPieceService.editArtPiece(editingArtwork.id.toString(), updateData, token);
         
         // Refresh the artworks list
-        const response = await artPieceService.getAllProducts(token);
+        const response = await artPieceService.getAllSellables(404, token);
         let artPieces = [];
         if (response.artPieces && Array.isArray(response.artPieces.artPieces)) {
           artPieces = response.artPieces.artPieces;
