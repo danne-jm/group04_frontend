@@ -21,7 +21,7 @@ export default function LandingPage() {
 
 const getProducts = async () => {
   try {
-    const response = await artPieceService.getAllProducts();
+    const response = await artPieceService.getAllSellables(404, 404);
 
     console.log(response, "Full response");
 
