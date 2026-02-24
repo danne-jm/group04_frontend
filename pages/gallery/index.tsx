@@ -45,7 +45,7 @@ const AllProductPage: React.FC = () => {
       setLoading(true);
       setError(null);
       try {
-        const result = await service.getAllProducts();
+        const result = await service.getAllSellables(404, 404);
         console.log("Parsed JSON result:", result);
 
         let artPieces: ArtPiece[] = [];
