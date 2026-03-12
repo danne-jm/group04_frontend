@@ -5,6 +5,7 @@ import Navbar from '@/components/navbar';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Search, Filter, X, ChevronDown, Grid, List, Heart, ShoppingCart, Calendar, Tag, Palette, Plus } from 'lucide-react';
+import userService from '@/services/user.service';
 
 interface ArtPiece {
   id: string;
@@ -45,6 +46,9 @@ const AllProductPage: React.FC = () => {
       setLoading(true);
       setError(null);
       try {
+
+        const userX = await userService.getAllProducts();
+
         const result = await service.getAllProducts();
         console.log("Parsed JSON result:", result);
 

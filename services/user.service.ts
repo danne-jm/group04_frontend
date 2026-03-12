@@ -384,7 +384,18 @@ const decodeJWT = (token: string) => {
   }
 };
 
+const hello = () => {
+  return "Hello from artPieceService!";
+};
+
+const getAllProducts = () => {
+  return "Hello from artPieceService!";
+};
+
 const userService = {
+  hello,
+  getAllProducts,
+  
   login,
   register,
   decodeJWT,

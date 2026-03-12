@@ -512,7 +512,13 @@ const transferArtPiece = async (
   return response.json();
 };
 
+const hello = () => {
+  return "Hello from artPieceService!";
+};
+
 const artPieceService = {
+  hello,
+  
   uploadNewArtPiece,
   getAllProducts,
   getProductById,
